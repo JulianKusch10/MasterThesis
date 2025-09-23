@@ -13,7 +13,7 @@ mkdir(sprintf('%s/Data/Run_%i',WorkLoc,taskid))
 
 %% Imaginary time
 imagtime = 1;
-loadHTherm = 0;
+loadHTherm = 1;
 
 %Obtain simulation parameters
 [Params] = parameters();
@@ -23,7 +23,7 @@ loadHTherm = 0;
 
 %Initialize wavefunction and potentials
 [psi,V,VDk] = Initialize(Params,Transf);
-psi = gpuArray(psi);
+%psi = gpuArray(psi);
 
 if loadHTherm == 1
     if Params.T > 0
@@ -49,4 +49,3 @@ t_idx = 1;
 
 [psi] = ssfm_imag(psi,Params,Transf,VDk,V,HThermFit,taskid,t_idx,Observ,WorkLoc);
 fprintf('Temperature %i nK calculated',Params.T)
-save(sprintf('%s/Data/Run_%i/psi_gs_as%i.mat',WorkLoc,taskid,Params.T),'psi','Params','Transf','VDk','V','muchem')

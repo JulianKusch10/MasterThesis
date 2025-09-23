@@ -27,10 +27,20 @@ Params.mu0factor = 0.3049584233607396;% =(m0/me)*pi*alpha^2 -- me=mass of electr
                                % mu0=mu0factor *hbar^2*a0/(m0*muB^2)
 %=============================%
 
+%Project 
+Params.name = "test2";
+Params.save_plots = 1;
+Params.save_params = 1;
+
+%Stopping 
+Params.stop_relres_flag = 1;
+Params.stop_relres = 10^(-3);
+
+
 %Number of points in each direction
-Params.Nx = 128;
-Params.Ny = 128;
-Params.Nz = 64;
+Params.Nx = 16;
+Params.Ny = 16;
+Params.Nz = 16;
 
 %Dimensions (in units of l0)
 Params.Lx = 24;
@@ -45,7 +55,7 @@ Params.l0 = sqrt(Params.hbar/(Params.m*Params.w0)); %Defining a harmonic oscilla
 % Params.ppum = 2500; %particles per micron
 % Params.N = Params.Lz*Params.ppum*l0*1e6;
 
-Params.N = 0.08*10^6;%2.4*10^4;
+Params.N = 8*10^4;%2.4*10^4;
 
 %Dipole lengths (units of muB)
 Params.mu = 9.93*Params.muB;
@@ -64,7 +74,7 @@ Params.dt = 1e-3;
 Params.mindt = 2e-8; %Minimum size for a time step using adaptive dt
 
 %Thermal GPE
-Params.T = 75; %Temperature in nanokelvin
+Params.T = 95; %Temperature in nanokelvin
 
 %================ Parameters defined by those above ================%
 %Contact interaction strength (units of l0/m)

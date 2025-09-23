@@ -38,5 +38,6 @@ function RPlot = runningplot(psi,Params,Transf,Observ)
     subplot(2,3,6)
     plot(Observ.mucVec,'-b')
     ylabel('$\mu$'); xlabel('steps');
-%     xlim([0,1]); ylim([0,8]);
-%     xlim([0,1]); ylim([0,8]);
+    %     xlim([0,1]); ylim([0,8]);
+    %     xlim([0,1]); ylim([0,8]);
+    %saveas(gcf, sprintf('/plots/%s.png', Params.name))

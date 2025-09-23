@@ -74,14 +74,31 @@ while t_idx < Params.cut_off
         Observ.res_idx = Observ.res_idx + 1;
         figure(1)
         runningplot(psi,Params,Transf,Observ)
+        %gcf.Theme = "light";
+        set(gcf, 'Color', 'w');
+        if Params.save_plots == 1
+            exportgraphics(gcf, sprintf('TeGPE/plots/%s.png', Params.name), 'Resolution', 300)
+        end 
+        if Params.save_params == 1
+            paramStr = evalc('disp(Params)');
+            filename = sprintf('TeGPE/params/%s.txt',Params.name);
+            fid = fopen(filename,'w');
+            fprintf(fid, '%s', paramStr);
+            fclose(fid);
+        end
+        
         drawnow
 
-        save(sprintf('%s/Data/Run_%i/psi_gs.mat',WorkLoc,taskid),'psi','muchem','Observ','t_idx','Transf','Params','VDk','V');
+        save(sprintf('%s/Data/Run_%i/psi_gs_2.mat',WorkLoc,taskid),'psi','muchem','Observ','t_idx','Transf','Params','VDk','V');
 
         %Adaptive time step -- Careful, this can quickly get out of control
         relres = abs(Observ.residual(Observ.res_idx)-Observ.residual(Observ.res_idx-1))/Observ.residual(Observ.res_idx);
+        disp(-log10(relres))
         if relres < 1e-4
-            if AdaptIdx > 2 && abs(dt) > Params.mindt
+            if relres < Params.stop_relres && Params.stop_relres_flag == 1
+                fprintf('Relative residual smaller than %f, simulation stops.',Params.stop_relres)
+                break
+            elseif AdaptIdx > 2 && abs(dt) > Params.mindt
                 dt = dt / 2;
                 fprintf('Time step changed to '); disp(dt);
                 AdaptIdx = 0;

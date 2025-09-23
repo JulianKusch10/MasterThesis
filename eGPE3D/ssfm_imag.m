@@ -107,7 +107,7 @@ Observ.residual = [Observ.residual res];
 
 Observ.res_idx = Observ.res_idx + 1;
 
-save(sprintf('%s/Data/Run_%i/psi_gs.mat',WorkLoc,taskid),'psi','muchem','Observ','t_idx','Transf','Params','VDk','V');
+save(sprintf('%s/Data/Run_%i/psi_gs_test.mat',WorkLoc,taskid),'psi','muchem','Observ','t_idx','Transf','Params','VDk','V');
 
 n = abs(psi).^2;
 nxy = squeeze(sum(n*Transf.dz,3));

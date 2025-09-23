@@ -50,7 +50,7 @@ Params.as = 88*a0; %86*a0; %aslist(taskid)
 
 %trapping frequencies
 Params.wx = 2*pi*33; %2*pi*47;
-Params.wy = 2*pi*84.6;%2*pi*21;
+Params.wy = 2*pi*110;%2*pi*21;
 Params.wz = 2*pi*167;%2*pi*150;
 
 % dipole angles
