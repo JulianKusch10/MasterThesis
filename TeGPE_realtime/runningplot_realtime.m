@@ -1,4 +1,4 @@
-function RPlot = runningplot_realtime(psi,Params,Transf,Observ,Quench)
+function RPlot = runningplot_realtime(psi, Params, Transf, Observ, Quench, title)
     set(0,'defaulttextInterpreter','latex')
     set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
     
@@ -37,3 +37,5 @@ function RPlot = runningplot_realtime(psi,Params,Transf,Observ,Quench)
     subplot(2,3,6)
     plot(Observ.mucVec,'-b')
     ylabel('$\mu$'); xlabel('steps');
+
+    sgtitle(title)

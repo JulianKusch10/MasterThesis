@@ -38,9 +38,9 @@ Params.stop_relres = 10^(-3);
 
 
 %Number of points in each direction
-Params.Nx = 16;
-Params.Ny = 16;
-Params.Nz = 16;
+Params.Nx = 64;
+Params.Ny = 64;
+Params.Nz = 64;
 
 %Dimensions (in units of l0)
 Params.Lx = 24;
@@ -74,7 +74,7 @@ Params.dt = 1e-3;
 Params.mindt = 2e-8; %Minimum size for a time step using adaptive dt
 
 %Thermal GPE
-Params.T = 95; %Temperature in nanokelvin
+Params.T = 100; %Temperature in nanokelvin
 
 %================ Parameters defined by those above ================%
 %Contact interaction strength (units of l0/m)

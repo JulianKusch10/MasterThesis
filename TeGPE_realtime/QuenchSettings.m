@@ -1,23 +1,26 @@
-function Quench = QuenchSettings(Params,muchem_initial,muchem_final)
+function [Quench] = QuenchSettings(Params)
 
 Quench.dt = 0.005; %Quench dt time in ms
-Quench.dt = Quench.dt*Params.w0/1000; %Quench dt time in ms
+Quench.dt_ms = Quench.dt;
+Quench.dt = Quench.dt*Params.w0/1000; %Time unit for computation
 
-Quench.T_initial = 10; %Temperature for the noise (in nanokelvin)
-Quench.T_final = 10;
+Quench.T_initial = 100; %Temperature for the noise (in nanokelvin)
+Quench.T_final = 100;
 
 Quench.NumQuenches = 1;
 Quench.QuenchIdxStart = 1;
 
-Quench.eq_time = 0; %Equilibration time in ms
-Quench.quench_time = 0; %Quench time in ms
+Quench.eq_time = 100; %Equilibration time in ms
+Quench.quench_time = 100; %Quench time in ms
 Quench.hold_time = 1000; %Hold time in ms
+
+Quench.total_time = Quench.eq_time + Quench.quench_time + Quench.hold_time;
 
 Quench.as_initial = Params.as; %Initial scattering length in a0 
 Quench.as_final = Params.as; %Final scattering length in a0
 
-Quench.muchem_initial = muchem_initial;
-Quench.muchem_final = muchem_final;
+%Quench.muchem_initial = muchem_initial;
+%Quench.muchem_final = muchem_final;
 
 %save step
 Quench.savestep = 400;
@@ -44,7 +47,7 @@ Quench.as_vec = [Quench.as_initial*ones(1, length(tVec_Eq)), linspace(Quench.as_
 Quench.gs_vec = 4*pi*Quench.as_vec/Params.l0;
 
 %muchem vector
-Quench.muchem_vec = [Quench.muchem_initial*ones(1, length(tVec_Eq)), linspace(Quench.muchem_initial,Quench.muchem_final,length(tVec_Q)), Quench.muchem_final*ones(1, length(tVec_H))]; 
+%Quench.muchem_vec = [Quench.muchem_initial*ones(1, length(tVec_Eq)), linspace(Quench.muchem_initial,Quench.muchem_final,length(tVec_Q)), Quench.muchem_final*ones(1, length(tVec_H))]; 
 
 % Quantum fluctuations need to be calculated over the quench
 eps_dd_vec = Params.add./Quench.as_vec;

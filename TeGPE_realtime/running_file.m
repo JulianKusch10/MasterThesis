@@ -12,11 +12,14 @@ mkdir(sprintf('%s/Data',WorkLoc))
 mkdir(sprintf('%s/Data/Run_%i',WorkLoc,taskid))
 
 %% Imaginary time
-imagtime = 1;
+imagtime = 0;
 loadHTherm = 1;
 
 %Obtain simulation parameters
 [Params] = parameters();
+
+%Obtain quench parameters
+[Quench] = QuenchSettings(Params);
 
 %Set up spatial grids and transforms
 [Transf] = setup_space(Params);
@@ -24,6 +27,8 @@ loadHTherm = 1;
 %Initialize wavefunction and potentials
 [psi,V,VDk] = Initialize(Params,Transf);
 %psi = gpuArray(psi);
+
+Params.T = Quench.Temp_vec(1);
 
 if loadHTherm == 1
     if Params.T > 0
@@ -47,5 +52,5 @@ Observ.EVec = []; Observ.NormVec = []; Observ.PCVec = []; Observ.tVecPlot = []; 
 Observ.res_idx = 1;
 t_idx = 1;
 
-[psi] = ssfm_imag(psi,Params,Transf,VDk,V,HThermFit,taskid,t_idx,Observ,WorkLoc);
+[psi] = ssfm_real(psi, Params,Transf,VDk,V,taskid,Observ,WorkLoc,Quench, HThermFit);
 fprintf('Temperature %i nK calculated',Params.T)
