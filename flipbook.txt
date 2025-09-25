@@ -1,0 +1,4 @@
+$i=1; Get-ChildItem -File -Filter *.png | Sort-Object Name | ForEach-Object { Rename-Item $_ -NewName ("TeGPE_realtime_64_multi_1_90_90_{0:D3}.png" -f $i); $i++ }
+
+
+ffmpeg -framerate 30 -i TeGPE_realtime_64_multi_1_90_90_%03d.png -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -pix_fmt yuv420p flipbook.mp4

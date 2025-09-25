@@ -28,7 +28,7 @@ Params.mu0factor = 0.3049584233607396;% =(m0/me)*pi*alpha^2 -- me=mass of electr
 %=============================%
 
 %Project 
-Params.name = "groundstate_for_realtime";
+Params.name = "new_initial";
 Params.save_plots = 1;
 Params.save_params = 0;
 
@@ -74,7 +74,7 @@ Params.dt = 1e-3;
 Params.mindt = 2e-8; %Minimum size for a time step using adaptive dt
 
 %Thermal GPE
-Params.T = 95; %Temperature in nanokelvin
+Params.T = 100; %Temperature in nanokelvin
 
 %================ Parameters defined by those above ================%
 %Contact interaction strength (units of l0/m)

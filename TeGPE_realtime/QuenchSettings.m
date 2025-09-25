@@ -12,7 +12,7 @@ Quench.QuenchIdxStart = 1;
 
 Quench.eq_time = 100; %Equilibration time in ms
 Quench.quench_time = 100; %Quench time in ms
-Quench.hold_time = 1000; %Hold time in ms
+Quench.hold_time = 0; %Hold time in ms
 
 Quench.total_time = Quench.eq_time + Quench.quench_time + Quench.hold_time;
 

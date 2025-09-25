@@ -28,19 +28,19 @@ Params.mu0factor = 0.3049584233607396;% =(m0/me)*pi*alpha^2 -- me=mass of electr
 %=============================%
 
 %Project 
-Params.name = "test3";
+Params.name = "realtime_initial";
 Params.save_plots = 1;
 Params.save_params = 0;
 
 %Stopping 
-Params.stop_relres_flag = 1;
+Params.stop_relres_flag = 0;
 Params.stop_relres = 10^(-3);
 
 
 %Number of points in each direction
-Params.Nx = 64;
-Params.Ny = 64;
-Params.Nz = 64;
+Params.Nx = 32;
+Params.Ny = 32;
+Params.Nz = 32;
 
 %Dimensions (in units of l0)
 Params.Lx = 24;

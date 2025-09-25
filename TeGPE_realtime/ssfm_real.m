@@ -7,7 +7,7 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 
 KEop= 0.5*(Transf.KX.^2+Transf.KY.^2+Transf.KZ.^2);
 t_idx = 1;
-dt = Params.dt;
+dt = Quench.dt;
 %J_z = zeros(length(Transf.z),Quench.ObservSteps);
 %Skz = zeros(length(Transf.z),Quench.ObservSteps);
 
@@ -51,10 +51,10 @@ Observ.tVecPlot = 0;
 %drawnow
 % save(sprintf('%s/Data/Run_%i/TimeEvolution/psi_%i.mat',WorkLoc,99,Observ.res_idx),'psi','muchem','Observ','t_idx','Transf','Params','VDk','V');
 
-h = waitbar(0,'Please wait...');
+%h = waitbar(0,'Please wait...');
 while t_idx <= Quench.tSteps
     current_time = t_idx * Quench.dt_ms;
-    waitbar(t_idx/Quench.tSteps, h, sprintf('Step %d of %d or %.3f ms of %.0f ms',t_idx ,Quench.tSteps, current_time, Quench.total_time));
+    %waitbar(t_idx/Quench.tSteps, h, sprintf('Step %d of %d or %.3f ms of %.0f ms',t_idx ,Quench.tSteps, current_time, Quench.total_time));
     [~, ~, VDk] = Initialize(Params,Transf);
     % Parameters at time t
     tVal = Quench.tVec(t_idx);
@@ -73,7 +73,7 @@ while t_idx <= Quench.tSteps
     Phi = real(ifftn(frho.*VDk));
 
     %Real-space
-    psi = psi.*exp(-1i*dt*(V + Params.gs*abs(psi).^2 + Params.gammaQF*abs(psi).^3 + Params.gdd*Phi - muchem));    
+    psi = psi.*exp(-1i*dt*(V + Params.gs*abs(psi).^2 + Params.gammaQF*abs(psi).^3 + Params.gdd*Phi + HT - muchem));    
 
     %kin
     psi = fftn(psi);

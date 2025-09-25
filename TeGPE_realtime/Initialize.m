@@ -124,12 +124,10 @@ function [psi,V,VDk] = Initialize(Params,Transf)
 
 
     % == Setting up the initial wavefunction == %
-    loadstate = 0;
+    loadstate = 1;
     
     if loadstate == 1
-        loadnumber = 1250;
-    %     load(sprintf('./Data/Seed/psi_%i.mat',loadnumber),'psi');
-        load(sprintf('./Data/Run_004/psi_gs.mat'),'psi');
+        load(sprintf('TeGPE_realtime/data/new_initial.mat'),'psi');
     
         Norm = sum(abs(psi(:)).^2)*Transf.dx*Transf.dy*Transf.dz;
         psi = sqrt(Params.N)*psi/sqrt(Norm);
